@@ -9,15 +9,15 @@ public class Fecha {
 	/**
 	 * Atributo para el día
 	 */
-	private int d; //d�a
+	private int dia; //d�a
 	/**
 	 * Atributo para el mes
 	 */
-	private int m; //mes
+	private int mes; //mes
 	/**
 	 * Atributo para el anho
 	 */
-	private int a; //a�o
+	private int anio; //a�o
 
 	/** 
 	 * Constructor sin parámetros
@@ -33,9 +33,9 @@ public class Fecha {
 	 * @param anio Atributo del anho
 	 */
 	public Fecha(int dia, int mes, int anio) {
-		this.d = dia;
-		this.m = mes;
-		this.a = anio;
+		this.dia = dia;
+		this.mes = mes;
+		this.anio = anio;
 	}
 
 	
@@ -44,25 +44,27 @@ public class Fecha {
 	 * @return Verdadero si la fecha esta bien escrita
 	 */
 	public boolean fechaCorrecta() {
-		boolean diaCorrecto, mesCorrecto, anioCorrecto;
-		anioCorrecto = a > 0;
-		mesCorrecto = m >= 1 && m <= 12;
-		switch (m) {
+		boolean diaCorrecto;
+		boolean mesCorrecto;
+		boolean anioCorrecto;
+		anioCorrecto = anio > 0;
+		mesCorrecto = mes >= 1 && mes <= 12;
+		switch (mes) {
 		case 2:
 			if (esBisiesto()) {
-				diaCorrecto = d >= 1 && d <= 29;
+				diaCorrecto = dia >= 1 && dia <= 29;
 			} else {
-				diaCorrecto = d >= 1 && d <= 28;
+				diaCorrecto = dia >= 1 && dia <= 28;
 			}
 			break;
 		case 4:
 		case 6:
 		case 9:
 		case 11:
-			diaCorrecto = d >= 1 && d <= 30;
+			diaCorrecto = dia >= 1 && dia <= 30;
 			break;
 		default:
-			diaCorrecto = d >= 1 && d <= 31;
+			diaCorrecto = dia >= 1 && dia <= 31;
 		}
 		return diaCorrecto && mesCorrecto && anioCorrecto;
 	}
@@ -73,8 +75,7 @@ public class Fecha {
 	 * @return Si el año es bisiesto devuelve true
 	 */
 	private boolean esBisiesto() {
-		boolean esBisiesto = (a % 4 == 0 && a % 100 != 0 || a % 400 == 0);
-		return esBisiesto;
+		return (anio % 4 == 0 && anio % 100 != 0 || anio % 400 == 0);
 	}
 
 	// M�todo diaSiguiente
@@ -82,13 +83,13 @@ public class Fecha {
 	 * Método que no recibe ni devuelve nada y solo pasa de dia en la fecha
 	 */
 	public void diaSiguiente() {
-		d++;
+		dia++;
 		if (!fechaCorrecta()) {
-			d = 1;
-			m++;
+			dia = 1;
+			mes++;
 			if (!fechaCorrecta()) {
-				m = 1;
-				a++;
+				mes = 1;
+				anio++;
 			}
 		}
 	}
@@ -98,15 +99,18 @@ public class Fecha {
 	 * Método que no recibe ni devuelve nada y convierte la fecha en String
 	 */
 	public String toString() {
-		if (d < 10 && m < 10) {
-			return "0" + d + "-0" + m + "-" + a;
-		} else if (d < 10 && m >= 10) {
-			return "0" + d + "-" + m + "-" + a;
-		} else if (d >= 10 && m < 10) {
-			return d + "-0" + m + "-" + a;
+		String cad;
+		if (dia < 10 && mes < 10) {
+			cad = "0" + dia + "-0" + mes + "-" + anio;
+		} else if (dia < 10 && mes >= 10) {
+			cad = "0" + dia + "-" + mes + "-" + anio;
+		} else if (dia >= 10 && mes < 10) {
+			cad = dia + "-0" + mes + "-" + anio;
 		} else {
-			return d + "-" + m + "-" + a;
+			cad = dia + "-" + mes + "-" + anio;
 		}
+		return cad;
+		
 	}
 
 }
