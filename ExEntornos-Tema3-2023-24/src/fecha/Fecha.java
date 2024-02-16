@@ -1,16 +1,37 @@
 package fecha;
-
+/**
+ * Clase Fecha en la que realizaremos una serie de métodos para mostrar la fecha
+ * @author Lorenzo Bellido
+ * @version 1.0
+ */
 public class Fecha {
-	private int d; //d�a
-	private int m; //mes
-	private int a; //a�o
-
 	
+	/**
+	 * Atributo para el día
+	 */
+	private int d; //d�a
+	/**
+	 * Atributo para el mes
+	 */
+	private int m; //mes
+	/**
+	 * Atributo para el anho
+	 */
+	private int a; //a�o
+
+	/** 
+	 * Constructor sin parámetros
+	 */
 	public Fecha() {
 
 	}
 
-	
+	/**
+	 * Constructor con parámetros 
+	 * @param dia Atributo del dia
+	 * @param mes Atributo del mes
+	 * @param anio Atributo del anho
+	 */
 	public Fecha(int dia, int mes, int anio) {
 		this.d = dia;
 		this.m = mes;
@@ -18,7 +39,10 @@ public class Fecha {
 	}
 
 	
-	
+	/**
+	 * Método sin parámetros de entrada que devuelve un booleano según si el anho es bisiesto
+	 * @return Verdadero si la fecha esta bien escrita
+	 */
 	public boolean fechaCorrecta() {
 		boolean diaCorrecto, mesCorrecto, anioCorrecto;
 		anioCorrecto = a > 0;
@@ -43,13 +67,20 @@ public class Fecha {
 		return diaCorrecto && mesCorrecto && anioCorrecto;
 	}
 
-	// M�todo esBisiesto. Solo lo usa fechaCorrecta, por eso es privado
+	// M�todo esBisiesto. Solo lo usa fechaCorrecta, por eso es privado
+	/**
+	 * Método sin parámetros de entrada que devuelve un booleano según si el año es bisiesto
+	 * @return Si el año es bisiesto devuelve true
+	 */
 	private boolean esBisiesto() {
 		boolean esBisiesto = (a % 4 == 0 && a % 100 != 0 || a % 400 == 0);
 		return esBisiesto;
 	}
 
-	// M�todo diaSiguiente
+	// M�todo diaSiguiente
+	/**
+	 * Método que no recibe ni devuelve nada y solo pasa de dia en la fecha
+	 */
 	public void diaSiguiente() {
 		d++;
 		if (!fechaCorrecta()) {
@@ -62,7 +93,10 @@ public class Fecha {
 		}
 	}
 
-	// M�todo toString
+	// M�todo toString
+	/**
+	 * Método que no recibe ni devuelve nada y convierte la fecha en String
+	 */
 	public String toString() {
 		if (d < 10 && m < 10) {
 			return "0" + d + "-0" + m + "-" + a;
